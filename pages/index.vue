@@ -2,8 +2,4 @@
   <Tutorial />
 </template>
 
-<script>
-export default {
-  name: 'IndexPage',
-}
-</script>
+<script src="~/pages/-index.js"></script>
