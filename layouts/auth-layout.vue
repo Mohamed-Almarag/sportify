@@ -1,5 +1,6 @@
 <template>
   <div class="auth-layout">
+    <!-- // "node-sass": "^7.0.1", -->
     <Nuxt />
   </div>
 </template>
@@ -12,6 +13,11 @@ export default {
 
 <style lang="scss" scoped>
 .auth-layout {
-  background: #eee;
+  height: 100vh;
+  background-image: url('../assets//images/register/bg.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  position: relative;
 }
 </style>

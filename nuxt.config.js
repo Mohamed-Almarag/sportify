@@ -22,7 +22,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~/assets/css/main.scss', '~/assets/css/colors.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   // ,'~/plugins/datepicker.js'
@@ -36,11 +36,36 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/bootstrap
+    // https://go.nuxtjs.dev/bootstrap npm cache clean --force
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
+    '@nuxtjs/i18n',
+    ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
+
+  i18n: {
+    locales: [
+      { code: 'ar', iso: 'ar-EG', file: 'ar-EG.js', dir: 'rtl' },
+      { code: 'en', iso: 'en-US', file: 'en-US.js', dir: 'ltr' },
+    ],
+    langDir: '@/lang/',
+    strategy: 'no_prefix',
+    defaultLocale: 'en',
+    lazy: true,
+    locale: 'en',
+    vueI18n: {
+      messages: {
+        ar: require('./lang/ar-EG.js'),
+        en: require('./lang/en-US.js'),
+      },
+    },
+  },
+
+  styleResources: {
+    scss: ['~/assets/css/*.scss'],
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
