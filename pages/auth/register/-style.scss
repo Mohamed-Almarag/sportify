@@ -1,0 +1,16 @@
+.main-auth-wrapper{
+  // padding: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  .auth-form-modal{
+    background-color: $white;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    // border-radius: $radius;
+    .main-form-wrapper{}
+  }
+}

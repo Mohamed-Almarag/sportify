@@ -1,20 +1,18 @@
 <template>
-  <div class="form-group">
+  <div class="slectbox-wrapper">
     <label class="control-label" v-if="isLabel">{{ label }}</label>
-    <div class="input-group">
-      <multiselect
-        v-model="selected"
-        :options="options"
-        :multiple="isMultiselect"
-        :placeholder="placeholder"
-        track-by="name"
-        label="name"
-      >
-        <template slot="singleLabel" slot-scope="{ option }">
-          {{ option.name }}
-        </template>
-      </multiselect>
-    </div>
+    <multiselect
+      v-model="selected"
+      :options="options"
+      :multiple="isMultiselect"
+      :placeholder="placeholder"
+      track-by="name"
+      label="name"
+    >
+      <template slot="singleLabel" slot-scope="{ option }">
+        {{ option.name }}
+      </template>
+    </multiselect>
   </div>
 </template>
 
@@ -65,8 +63,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-group {
+.slectbox-wrapper {
   position: relative;
+
   .control-label {
     color: #565656;
     font-size: 14px;
@@ -75,7 +74,9 @@ export default {
 }
 </style>
 <style lang="scss">
-.form-group {
+.slectbox-wrapper {
+  // box-shadow: $shadow;
+  // border-radius: 25px;
   &.bg_white {
     .multiselect__tags {
       background-color: #fff;
@@ -94,12 +95,18 @@ export default {
     color: #495057;
     background-color: transparent;
   }
+  // Main style
   .multiselect__tags {
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 25px;
+    box-shadow: $shadow;
     min-height: 50px;
     display: flex;
     align-items: center;
+    padding: 8px 40px 0 1rem;
+  }
+  .multiselect__select {
+    top: 8px;
   }
   .multiselect__tag {
     span {
@@ -114,6 +121,12 @@ export default {
     font-size: 12px;
     color: #ddd;
     background-color: transparent;
+  }
+  .multiselect__placeholder {
+    font-weight: 400;
+    padding-bottom: 0;
+    font-size: 14px;
+    color: $text-color;
   }
   &.bg_gray {
     .multiselect__tags {
@@ -133,6 +146,9 @@ export default {
     }
     .multiselect__placeholder {
       font-weight: 400;
+      padding-bottom: 0;
+      font-size: 14px;
+      color: $text-color;
     }
   }
   .multiselect__element {

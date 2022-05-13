@@ -1,1 +1,11 @@
 
+.auth-title{
+  color: $second-color;
+}
+.validation-error{
+  transform: translateY(-15px);
+    display: inline-block;
+    color: #e7152d;
+    font-weight: 500;
+    font-size: 14px;
+}

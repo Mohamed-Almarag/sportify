@@ -1,5 +1,5 @@
 export default {
-  ssr: false,
+  // ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'sportify',
@@ -22,11 +22,15 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/css/main.scss', '~/assets/css/colors.scss'],
+  css: ['~/assets/css/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   // ,'~/plugins/datepicker.js'
-  plugins: ['~/plugins/bootstrap-vue.js', '~/plugins/validation.js'],
+  plugins: [
+    '~/plugins/bootstrap-vue.js',
+    '~/plugins/validation.js',
+    // '~/plugins/axios.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -64,13 +68,15 @@ export default {
   },
 
   styleResources: {
-    scss: ['~/assets/css/*.scss'],
+    scss: ['~/assets/css/_colors.scss'],
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    // credentials: true,
+    baseURL: 'offsideapi.anamuslim.co/api/',
+    // browserBaseURL: 'offsideapi.anamuslim.co/api/',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

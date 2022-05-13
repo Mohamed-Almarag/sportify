@@ -1,23 +1,22 @@
 <template>
   <div class="form-group">
     <label class="control-label" v-if="isLabel">{{ label }}</label>
-    <div class="input-group">
-      <textarea
-        v-if="isTextarea"
-        class="form-control"
-        rows="5"
-        :placeholder="placeholder"
-        v-model="model"
-      ></textarea>
-      <input
-        v-else
-        :type="type"
-        class="form-control"
-        :placeholder="placeholder"
-        v-model="model"
-        :disabled="disabled"
-      />
-    </div>
+    <textarea
+      v-if="isTextarea"
+      class="form-input"
+      rows="5"
+      :placeholder="placeholder"
+      v-model="model"
+    ></textarea>
+    <input
+      v-else
+      :type="type"
+      class="form-input"
+      :placeholder="placeholder"
+      v-model="model"
+      :disabled="disabled"
+    />
+    <span @click="showPassword" v-if="isPassword" class="show_icon">pass</span>
   </div>
 </template>
 
@@ -46,6 +45,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isPassword: {
+      type: Boolean,
+      default: false,
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -61,67 +64,43 @@ export default {
       this.$emit('input', currentValue)
     },
   },
+  methods: {
+    showPassword() {
+      this.$emit('show-password')
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .form-group {
   position: relative;
-  &.row_display {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .input-group,
-    input {
-      width: calc(70%);
-    }
-  }
-  &.msg-container {
-    .input-group,
-    input {
-      min-height: 400px;
-      border: 1px solid #ced4da;
-      border-radius: 15px;
-    }
-  }
-  &.sm-input {
-    margin-bottom: 0;
-    .form-control {
-      width: 120px;
-      height: 40px;
-      border: 1px solid #eee;
-      text-align: center;
-      &::placeholder {
-        color: #808080;
-      }
-    }
-  }
-  &.bg_white {
-    .form-control {
-      background-color: #fff;
-    }
-  }
-  &.bg_gray {
-    .form-control {
-      background-color: #f4f6f8;
-    }
-  }
+  // border: 1px solid;
+  border-radius: 20px;
   .control-label {
-    color: #565656;
+    color: $text-color;
     font-size: 14px;
     font-weight: 500;
     text-transform: capitalize;
   }
-  .form-control {
+  .form-input {
     font-size: 15px;
-    height: 54px;
+    height: 50px;
     border-radius: 10px;
     border: 1px solid transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    border-radius: 25px;
+    padding: 0 1rem;
+    box-shadow: $shadow;
+    color: $text-color;
     &::placeholder {
       font-size: 14px;
+      color: $text-color;
     }
     &:focus {
-      border-color: #f6b027;
+      // border-color: #f6b027;
     }
     &:disabled {
       opacity: 0.75;
@@ -135,9 +114,22 @@ export default {
   input[type='number'] {
     -moz-appearance: textfield;
   }
-  textarea.form-control {
+  textarea.form-input {
     height: auto;
     resize: none;
+  }
+  .show_icon {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    cursor: pointer;
+    // .icon {
+    //   width: 22px;
+    //   height: 20px;
+    //   fill: #8f8f8f;
+    // }
   }
 }
 .w_50 {
