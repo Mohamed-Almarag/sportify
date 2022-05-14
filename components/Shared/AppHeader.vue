@@ -31,6 +31,7 @@
 
       <!-- the left side -->
       <div>
+        <v-btn to="auth/login" plain color="color">login</v-btn>
         <v-btn @click="appModeHandler" plain :ripple="false" color="color" icon>
           <v-icon>mdi-lightbulb</v-icon>
         </v-btn>
@@ -108,10 +109,6 @@ export default {
     }
   },
   computed: {
-    availableLocales() {
-      return this.$i18n.locales
-      // return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    },
     isSmall() {
       return this.$vuetify.breakpoint.smAndDown
     },

@@ -1,13 +1,10 @@
-// this.$axios.setBaseURL('offsideapi.anamuslim.co/api/')
-// export default function ({ $axios }) {}
-import axios from 'axios'
-
-const domain = 'offsideapi.anamuslim.co/api/'
-// const domain = 'http://offers.softgatesdemo.com/api/'
-
-export const baseUrl = `${domain}`
-const API_URL = axios.create({
-  baseURL: domain,
-})
-
-export default API_URL
+export default ({ $axios }) => {
+  $axios.onRequest((config) => {
+    config.headers = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${this.$cookiz.get('TOKEN') || ''}`,
+    }
+  })
+  $axios.onError((error) => console.error(error))
+}

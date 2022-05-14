@@ -33,6 +33,8 @@ export default {
     // '~/plugins/validation.js',
     // '~/plugins/axios.js',
     '~plugins/vuetify.js',
+    '~plugins/client.vars.js',
+    '~plugins/axios.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,9 +45,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/bootstrap npm cache clean --force
-    // 'bootstrap-vue/nuxt',
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/i18n',

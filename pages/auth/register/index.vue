@@ -2,7 +2,7 @@
   <div class="main-auth-wrapper">
     <div class="auth-form-modal">
       <h3 class="auth-title text-capitalize text-center mb-5">sign up</h3>
-      <div class="row">
+      <v-row no-gutters>
         <!-- Start Form  -->
         <div class="col-md-6">
           <!-- <ValidationObserver ref="form">
@@ -78,14 +78,9 @@
           </ValidationObserver> -->
         </div>
         <div class="photo-wrapper col-md-6">
-          <img
-            class="w-100"
-            src="@/assets/images/register/signup.png"
-            alt="signup-photo"
-            draggable="false"
-          />
+          <v-img :src="require('@/assets/images/register/signup.png')"></v-img>
         </div>
-      </div>
+      </v-row>
     </div>
   </div>
 </template>
