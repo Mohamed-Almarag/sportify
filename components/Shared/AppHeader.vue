@@ -1,66 +1,95 @@
 <template>
-  <header>
-    <div>
-      <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand href="#">NavBar</b-navbar-brand>
+  <nav>
+    <v-app-bar elevate-on-scroll dense>
+      <v-app-bar-nav-icon
+        v-if="isSmall"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <v-toolbar-title>
+        <nuxt-link to="/" class="color--text text-decoration-none logo-link">
+          <strong>Sportify</strong>
+        </nuxt-link>
+      </v-toolbar-title>
+      <div class="links" v-if="!isSmall">
+        <v-btn
+          v-for="(link, $index) in links"
+          :key="$index"
+          :to="`/${link.name}`"
+          plain
+          class="color--text"
+          :ripple="false"
+        >
+          {{ link.name }}
+        </v-btn>
+      </div>
 
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="m-auto">
-            <b-nav-item href="#">
-              <nuxt-link to="/">Home</nuxt-link>
-            </b-nav-item>
-            <b-nav-item href="#">
-              <nuxt-link to="/about">About Us</nuxt-link>
-            </b-nav-item>
-            <b-nav-item href="#">
-              <nuxt-link to="/playgrounds">Playgrounds</nuxt-link>
-            </b-nav-item>
-            <b-nav-item href="#">
-              <nuxt-link to="/contact">Contact Us</nuxt-link>
-            </b-nav-item>
-          </b-navbar-nav>
+      <v-spacer></v-spacer>
 
-          <!-- Start User Authentication  -->
-          <!-- <b-navbar-nav class="ml-auto">
+      <!-- the left side -->
+      <div>
+        <v-btn @click="appModeHandler" plain :ripple="false" color="color" icon>
+          <v-icon>mdi-lightbulb</v-icon>
+        </v-btn>
+        <v-menu
+          bottom
+          nudge-bottom="4"
+          transition="slide-y-transition"
+          offset-y
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              v-bind="attrs"
+              v-on="on"
+              plain
+              :ripple="false"
+              color="color"
+              icon
+            >
+              <v-icon> mdi-translate </v-icon>
+            </v-btn>
+          </template>
 
-          </b-navbar-nav> -->
-          <!-- End User Authentication  -->
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto align-items-center">
-            <b-nav-item-dropdown text="Lang" right>
-              <!-- <nuxt-link
-                v-for="locale in availableLocales"
-                :key="locale.code"
-                :to="switchLocalePath(locale.code)"
-                @click.native="switchs(locale.code)"
-                >{{ locale.code }}</nuxt-link
-              > -->
-              <b-dropdown-item
-                href="#"
-                v-for="locale in availableLocales"
-                :key="locale.code"
-                @click="switchs(locale.code)"
-                :to="switchLocalePath(locale.code)"
-                >{{ locale.code }}</b-dropdown-item
-              >
-              <!-- <b-dropdown-item href="#">ES</b-dropdown-item> -->
-            </b-nav-item-dropdown>
-            <nuxt-link to="auth/register">Sign Up</nuxt-link>
-            <b-nav-item-dropdown right v-if="isAuth">
-              <!-- Using 'button-content' slot -->
-              <template #button-content>
-                <em>User</em>
-              </template>
-              <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-    </div>
-  </header>
+          <v-list dense>
+            <v-list-item
+              link
+              @click="languageSwitcher('en')"
+              class="text-center"
+            >
+              <v-list-item-title class="px-2">En</v-list-item-title>
+            </v-list-item>
+            <v-list-item
+              link
+              @click="languageSwitcher('ar')"
+              class="text-center"
+            >
+              <v-list-item-title class="px-2">ع</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+    </v-app-bar>
+    <!-- the drawer -->
+    <v-navigation-drawer v-model="drawer" temporary app hide-overlay>
+      <v-list nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="amber--text text--accent-4"
+        >
+          <v-list-item v-for="(link, $index) in links" :key="$index">
+            <nuxt-link
+              :to="`/${link.name}`"
+              class="w-full text-capitalize text-decoration-none color--text"
+            >
+              <v-list-item-title>
+                {{ link.name }}
+              </v-list-item-title>
+            </nuxt-link>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+  </nav>
 </template>
 
 <script>
@@ -69,6 +98,10 @@ export default {
   data() {
     return {
       isAuth: false,
+      drawer: false,
+      group: null,
+      currentLang: !process.server ? localStorage.getItem('lang') : 'en',
+      links: [{ name: 'playgrounds' }, { name: 'contact' }, { name: 'about' }],
     }
   },
   computed: {
@@ -76,46 +109,56 @@ export default {
       return this.$i18n.locales
       // return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
     },
+    isSmall() {
+      return this.$vuetify.breakpoint.smAndDown
+    },
+  },
+  watch: {
+    group() {
+      this.drawer = false
+    },
+    currentLang(newV, oldV) {
+      console.log({ newV, oldV })
+    },
   },
   mounted() {
-    console.log(this.availableLocales)
-    console.log(this.$i18n.locale)
-    this.$cookiz.get('lang')
-    // setCookie
-    if (this.$cookiz.get('lang') == 'ar') {
+    if (!this.currentLang) {
+      this.$i18n.locale == 'ar'
+    } else if (this.currentLang == 'ar') {
       this.$i18n.locale = 'ar'
-      // this.$vuetify.rtl = true
-      // this.$auth.$storage.setCookie('lang', 'ar', false)
+      this.$vuetify.rtl = true
     } else {
       this.$i18n.locale = 'en'
-      // this.$vuetify.rtl = false
-      // this.$auth.$storage.setCookie('lang', 'en', false)
+      this.$vuetify.rtl = false
     }
   },
   methods: {
-    switchs(local) {
-      this.$i18n.locale = local
-      this.$cookiz.set('lang', local)
-      console.log(this.$i18n.locale)
-      // localStorage.setItem('lang', local)
-      // if (local == 'ar') {
-      //   this.$vuetify.rtl = true
-      // } else {
-      //   this.$vuetify.rtl = false
-      // }
+    appModeHandler() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     },
-    // switchs() {
-    //   let llang = this.$i18n.locale
-
-    //   if (llang == 'ar') {
-    //     this.$i18n.locale = 'en'
-    //   } else {
-    //     this.$i18n.locale = 'ar'
-    //   }
-    //   console.log(this.$i18n.locale)
-    // },
+    languageSwitcher(local) {
+      this.$i18n.locale = local
+      console.log(this.$i18n.locale)
+      localStorage.setItem('lang', local)
+      if (local == 'ar') {
+        this.$vuetify.rtl = true
+      } else {
+        this.$vuetify.rtl = false
+      }
+    },
   },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+
+  .logo-link:focus {
+    outline: none;
+  }
+}
+</style>

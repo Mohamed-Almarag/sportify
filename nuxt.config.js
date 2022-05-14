@@ -1,3 +1,5 @@
+// import '~vuetify/src/styles/styles.sass'
+
 export default {
   // ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -27,21 +29,22 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   // ,'~/plugins/datepicker.js'
   plugins: [
-    '~/plugins/bootstrap-vue.js',
-    '~/plugins/validation.js',
+    // '~/plugins/bootstrap-vue.js',
+    // '~/plugins/validation.js',
     // '~/plugins/axios.js',
+    '~plugins/vuetify.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ['@nuxtjs/vuetify'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap npm cache clean --force
-    'bootstrap-vue/nuxt',
+    // 'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
@@ -56,10 +59,10 @@ export default {
     ],
     langDir: '@/lang/',
     strategy: 'no_prefix',
-    defaultLocale: 'en',
-    lazy: true,
-    locale: 'en',
+    defaultLocale: 'ar',
+    detectBrowserLanguage: true,
     vueI18n: {
+      fallbackLocale: 'ar',
       messages: {
         ar: require('./lang/ar-EG.js'),
         en: require('./lang/en-US.js'),
@@ -75,7 +78,7 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     // credentials: true,
-    baseURL: 'offsideapi.anamuslim.co/api/',
+    baseURL: 'http://offsideapi.anamuslim.co/api/',
     // browserBaseURL: 'offsideapi.anamuslim.co/api/',
   },
 

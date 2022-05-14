@@ -22,14 +22,12 @@ export const mutations = {
 }
 export const actions = {
   async get_all_emirats({ commit }) {
-    await this.$axios
-      .get('get-emirates')
-      .then((res) => {
-        commit('SET_EMIRATES', res)
-        console.log(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    try {
+      let response = await this.$axios.$post('get-emirates')
+
+      commit('SET_EMIRATES', response)
+    } catch (error) {
+      console.error(error)
+    }
   },
 }

@@ -5,9 +5,8 @@
       <div class="row">
         <!-- Start Form  -->
         <div class="col-md-6">
-          <ValidationObserver ref="form">
+          <!-- <ValidationObserver ref="form">
             <form class="main-form-wrapper" @submit.prevent="submitForm">
-              <!-- Full Name -->
               <ValidationProvider rules="required" v-slot="{ errors }">
                 <BaseAppInput
                   :isLabel="false"
@@ -19,7 +18,6 @@
                   errors[0]
                 }}</span>
               </ValidationProvider>
-              <!-- Email  -->
               <ValidationProvider rules="required|email" v-slot="{ errors }">
                 <BaseAppInput
                   :isLabel="false"
@@ -31,7 +29,6 @@
                   errors[0]
                 }}</span>
               </ValidationProvider>
-              <!-- Password  -->
               <ValidationProvider
                 rules="required|min:8|confirmed:confirm_password"
                 vid="confirm_password"
@@ -49,7 +46,6 @@
                   errors[0]
                 }}</span>
               </ValidationProvider>
-              <!-- Confirm Password  -->
               <ValidationProvider
                 rules="required|confirmed:confirm_password"
                 v-slot="{ errors }"
@@ -79,9 +75,8 @@
               </ValidationProvider>
               <button>save</button>
             </form>
-          </ValidationObserver>
+          </ValidationObserver> -->
         </div>
-        <!-- Start Photo  -->
         <div class="photo-wrapper col-md-6">
           <img
             class="w-100"
@@ -95,8 +90,71 @@
   </div>
 </template>
 
-<script src="~/pages/auth/register/-script"></script>
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  name: 'Register',
+  layout: 'auth-layout',
+  data() {
+    return {
+      passwordType: 'password',
+      userInfo: {
+        name: '',
+        email: '',
+        password: '',
+        c_password: '',
+        gender: '',
+        emirate_id: '',
+      },
+      genders: [
+        { name: 'Male', value: 'Male' },
+        { name: 'Female', value: 'Female' },
+        { name: 'Other', value: 'Other' },
+      ],
+    }
+  },
+  computed: {
+    ...mapGetters({
+      get_genders: ['get_genders'],
+    }),
+  },
+  methods: {
+    showPassword() {
+      this.passwordType = this.passwordType === 'password' ? 'text' : 'password'
+    },
+    submitForm() {
+      // this.$refs.form.validate().then((success) => {
+      //   if (!success) {
+      //     return
+      //   } else {
+      //     this.handleRequest()
+      //   }
+      // })
+      console.log('hello there')
+    },
+    handleRequest() {
+      console.log('yes submit')
+    },
+  },
+  mounted() {
+    this.$store.dispatch('get_all_emirats')
+  },
+}
+</script>
 
 <style lang="scss" scoped>
-@import './-style.scss';
+.main-auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .auth-form-modal {
+    background-color: $white;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+  }
+}
 </style>

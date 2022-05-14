@@ -1,8 +1,7 @@
 <template>
-  <div class="auth-layout">
-    <!-- // "node-sass": "^7.0.1", -->
+  <v-app class="auth-layout">
     <Nuxt />
-  </div>
+  </v-app>
 </template>
 
 <script>

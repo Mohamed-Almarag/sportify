@@ -1,13 +1,10 @@
 <template>
-  <div>
-    <h3>{{ $t('hello') }}</h3>
+  <div style="height: 100vh" class="d-flex justify-center align-center">
+    <h3 class="display-1 text-uppercase">{{ $t('hello') }}</h3>
   </div>
 </template>
-
-<script src="~/pages/-index.js"></script>
-
-<style lang="scss" scoped>
-h3 {
-  // color: $color;
+<script>
+export default {
+  name: 'HomePage',
 }
-</style>
+</script>
