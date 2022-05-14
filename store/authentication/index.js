@@ -1,6 +1,6 @@
-export const state = {
+export const state = () => ({
   Token: null,
-}
+})
 
 export const getters = {
   loggedIn(state) {
@@ -10,7 +10,7 @@ export const getters = {
 
 export const mutations = {
   SET_TOKEN(state, data) {
-    return (state.Token = data)
+    state.Token = data
   },
 }
 

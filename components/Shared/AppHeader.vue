@@ -31,7 +31,10 @@
 
       <!-- the left side -->
       <div>
-        <v-btn to="auth/login" plain color="color">login</v-btn>
+        <v-btn to="auth/login" plain color="color" v-if="!$loggedIn()"
+          >login</v-btn
+        >
+        <v-btn plain color="color" v-else>welcome their!</v-btn>
         <v-btn @click="appModeHandler" plain :ripple="false" color="color" icon>
           <v-icon>mdi-lightbulb</v-icon>
         </v-btn>
