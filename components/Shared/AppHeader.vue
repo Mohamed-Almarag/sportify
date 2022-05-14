@@ -7,8 +7,11 @@
       ></v-app-bar-nav-icon>
 
       <v-toolbar-title>
-        <nuxt-link to="/" class="color--text text-decoration-none logo-link">
-          <strong>Sportify</strong>
+        <nuxt-link
+          to="/"
+          class="color--text text-decoration-none logo-link font-weight-bold"
+        >
+          Sportify
         </nuxt-link>
       </v-toolbar-title>
       <div class="links" v-if="!isSmall">
