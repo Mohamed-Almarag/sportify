@@ -31,6 +31,12 @@ export const actions = {
   async attempt({ commit }, token) {
     commit('SET_TOKEN', token)
 
-    this.$cookiz.set('TOKEN', token)
+    let date = new Date()
+    const expDays = 2
+    date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000)
+
+    console.log(typeof date)
+
+    this.$cookiz.set('TOKEN', token, { expires: date })
   },
 }
