@@ -1,8 +1,8 @@
 export const state = () => ({
   genders: [
-    { name: 'Male', value: 'Male' },
-    { name: 'Female', value: 'Female' },
-    { name: 'Other', value: 'Other' },
+    { name: 'Male', value: 'male' },
+    { name: 'Female', value: 'female' },
+    { name: 'Other', value: 'other' },
   ],
   emirates: [],
 })

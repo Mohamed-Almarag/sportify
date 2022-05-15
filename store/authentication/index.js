@@ -1,5 +1,6 @@
 export const state = () => ({
   Token: null,
+  RegisterResponse: null,
 })
 
 export const getters = {
@@ -11,6 +12,9 @@ export const getters = {
 export const mutations = {
   SET_TOKEN(state, data) {
     state.Token = data
+  },
+  REGISTER_RESPONSE(state, data) {
+    state.RegisterResponse = data
   },
 }
 
@@ -38,5 +42,14 @@ export const actions = {
     console.log(typeof date)
 
     this.$cookiz.set('TOKEN', token, { expires: date })
+  },
+  async registerHandler({ commit }, payload) {
+    try {
+      let response = await this.$axios.$post('register', payload)
+      commit('REGISTER_RESPONSE', response)
+      return response
+    } catch (error) {
+      console.error(error)
+    }
   },
 }

@@ -31,13 +31,13 @@
 
       <!-- the left side -->
       <div>
-        <v-btn to="auth/login" plain color="color" v-if="!$loggedIn()"
-          >login</v-btn
-        >
-        <v-btn plain color="color" v-else>welcome their!</v-btn>
-        <v-btn @click="appModeHandler" plain :ripple="false" color="color" icon>
-          <v-icon>mdi-lightbulb</v-icon>
+        <v-btn to="auth/login" plain color="color" v-if="!$loggedIn()">
+          login
         </v-btn>
+        <v-btn to="auth/register" plain color="color" v-if="!$loggedIn()">
+          register
+        </v-btn>
+        <v-btn plain color="color" v-else>welcome their!</v-btn>
         <v-menu
           bottom
           nudge-bottom="4"
@@ -136,9 +136,6 @@ export default {
     }
   },
   methods: {
-    appModeHandler() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-    },
     languageSwitcher(local) {
       this.$i18n.locale = local
       console.log(this.$i18n.locale)

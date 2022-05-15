@@ -1,88 +1,25 @@
 <template>
-  <div class="main-auth-wrapper">
-    <div class="auth-form-modal">
-      <h3 class="auth-title text-capitalize text-center mb-5">sign up</h3>
-      <v-row no-gutters>
-        <!-- Start Form  -->
-        <div class="col-md-6">
-          <!-- <ValidationObserver ref="form">
-            <form class="main-form-wrapper" @submit.prevent="submitForm">
-              <ValidationProvider rules="required" v-slot="{ errors }">
-                <BaseAppInput
-                  :isLabel="false"
-                  type="text"
-                  placeholder="Full Name"
-                  v-model="userInfo.name"
-                ></BaseAppInput>
-                <span v-if="errors[0]" class="validation-error">{{
-                  errors[0]
-                }}</span>
-              </ValidationProvider>
-              <ValidationProvider rules="required|email" v-slot="{ errors }">
-                <BaseAppInput
-                  :isLabel="false"
-                  type="email"
-                  placeholder="Email"
-                  v-model="userInfo.email"
-                ></BaseAppInput>
-                <span v-if="errors[0]" class="validation-error">{{
-                  errors[0]
-                }}</span>
-              </ValidationProvider>
-              <ValidationProvider
-                rules="required|min:8|confirmed:confirm_password"
-                vid="confirm_password"
-                v-slot="{ errors }"
-              >
-                <BaseAppInput
-                  :isLabel="false"
-                  :isPassword="true"
-                  :type="passwordType"
-                  placeholder="Password"
-                  @show-password="showPassword"
-                  v-model="userInfo.password"
-                ></BaseAppInput>
-                <span v-if="errors[0]" class="validation-error">{{
-                  errors[0]
-                }}</span>
-              </ValidationProvider>
-              <ValidationProvider
-                rules="required|confirmed:confirm_password"
-                v-slot="{ errors }"
-              >
-                <BaseAppInput
-                  :isLabel="false"
-                  :isPassword="true"
-                  :type="passwordType"
-                  placeholder="Confirm Password"
-                  @show-password="showPassword"
-                  v-model="userInfo.c_password"
-                ></BaseAppInput>
-                <span v-if="errors[0]" class="validation-error">{{
-                  errors[0]
-                }}</span>
-              </ValidationProvider>
-              <ValidationProvider rules="required" v-slot="{ errors }">
-                <BaseAppSelectBox
-                  :isLabel="false"
-                  v-model="userInfo.gender"
-                  placeholder="Choose Your Gender"
-                  :options="get_genders"
-                ></BaseAppSelectBox>
-                <span v-if="errors[0]" class="validation-error">{{
-                  errors[0]
-                }}</span>
-              </ValidationProvider>
-              <button>save</button>
-            </form>
-          </ValidationObserver> -->
-        </div>
-        <div class="photo-wrapper col-md-6">
-          <v-img :src="require('@/assets/images/register/signup.png')"></v-img>
-        </div>
-      </v-row>
-    </div>
-  </div>
+  <v-img :src="bgImage" height="100vh">
+    <v-card
+      flat
+      raised
+      tile
+      style="background: rgba(0, 0, 0, 0.3)"
+      height="100%"
+      dark
+    >
+      <v-card-title
+        class="display-2 font-weight-light flex justify-center"
+        style="background: rgba(225, 225, 225, 0.5); backdrop-filter: blur(5px)"
+      >
+        Register
+      </v-card-title>
+
+      <div class="mt-16">
+        <Dialog />
+      </div>
+    </v-card>
+  </v-img>
 </template>
 
 <script>
@@ -112,20 +49,16 @@ export default {
     ...mapGetters({
       get_genders: ['get_genders'],
     }),
+    bgImage() {
+      return require('@/assets//images/register/bg.png')
+    },
   },
   methods: {
     showPassword() {
       this.passwordType = this.passwordType === 'password' ? 'text' : 'password'
     },
     submitForm() {
-      // this.$refs.form.validate().then((success) => {
-      //   if (!success) {
-      //     return
-      //   } else {
-      //     this.handleRequest()
-      //   }
-      // })
-      console.log('hello there')
+      console.log('hello their')
     },
     handleRequest() {
       console.log('yes submit')
@@ -136,20 +69,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.main-auth-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-
-  .auth-form-modal {
-    background-color: $white;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    padding: 2rem;
-  }
-}
-</style>
