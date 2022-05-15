@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <div class="auth-layout">
-      <Nuxt />
-    </div>
+    <Nuxt />
   </v-app>
 </template>
 

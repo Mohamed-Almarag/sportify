@@ -31,10 +31,10 @@
 
       <!-- the left side -->
       <div>
-        <v-btn to="auth/login" plain color="color" v-if="!$loggedIn()">
+        <v-btn to="/auth/login" plain color="color" v-if="!$loggedIn()">
           login
         </v-btn>
-        <v-btn to="auth/register" plain color="color" v-if="!$loggedIn()">
+        <v-btn to="/auth/register" plain color="color" v-if="!$loggedIn()">
           register
         </v-btn>
         <v-btn plain color="color" v-else>welcome their!</v-btn>

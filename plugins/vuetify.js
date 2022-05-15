@@ -8,10 +8,12 @@ const opts = {
   theme: {
     themes: {
       light: {
-        color: '#000',
+        color: '#1A0A52',
+        mainColor: '#64C4A4',
       },
       dark: {
         color: '#fff',
+        mainColor: '#64C4A4',
       },
     },
   },
