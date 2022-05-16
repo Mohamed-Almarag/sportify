@@ -35,7 +35,7 @@ export default {
     '~plugins/vuetify.js',
     '~plugins/client.vars.js',
     '~plugins/axios.js',
-    '~plugins/vue-carousel.js',
+    { src: '~plugins/vue-carousel.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
