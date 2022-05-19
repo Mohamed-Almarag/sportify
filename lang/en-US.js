@@ -2,6 +2,12 @@ export default {
   hello: 'hello world',
   close: 'close',
   correct: 'correct',
+  bookPlayground: 'Book a playground',
+  createTournament: 'creat a tournament',
+  welcometo: 'welcome to',
+  sportsclub: 'sport club',
+  aboutUs: 'about us',
+  contactUs: 'contact us',
   auth: {
     login: 'login',
     register: 'register',

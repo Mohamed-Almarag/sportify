@@ -2,6 +2,12 @@ export default {
   hello: 'مرحبا',
   close: 'اغلق',
   correct: 'صحيح',
+  bookPlayground: 'أحجز ملعب',
+  createTournament: 'إنشاء جولة',
+  welcometo: 'مرحبا في',
+  sportsclub: 'نادي الرياضة',
+  aboutUs: 'معلومات عنا',
+  contactUs: 'تواصل معنا',
   auth: {
     login: 'تسجيل الدخول',
     register: 'انشاء حساب',

@@ -1,5 +1,31 @@
 <template>
-  <div class="mt-16">
+  <v-card flat>
+    <SharedHeader
+      :bgImg="headerBGImage"
+      :subtitle="subtitle"
+      :title="title"
+      :text="text"
+      btn1Icon="calendar-month-outline"
+      :btnText1="$t('bookPlayground')"
+      :btnText2="$t('createTournament')"
+    >
+      <template #subtitle>
+        <v-card-title
+          class="display-2 font-weight-bold white--text text-uppercase"
+          style="margin-bottom: -40px"
+        >
+          {{ $t(subtitle) }}
+        </v-card-title>
+      </template>
+      <template #title>
+        <v-card-title
+          class="display-4 font-weight-bold white--text text-uppercase"
+        >
+          {{ $t(title) }}
+        </v-card-title>
+      </template>
+    </SharedHeader>
+
     <SharedSlider
       :options="options"
       :bottom="$vuetify.breakpoint.width > 768 ? '-25' : '-60'"
@@ -8,13 +34,17 @@
         <SharedCard />
       </slide>
     </SharedSlider>
-  </div>
+  </v-card>
 </template>
 <script>
 export default {
   name: 'HomePage',
   data() {
     return {
+      headerBGImage: require('@/assets/images/homeHeader.png'),
+      subtitle: 'welcometo',
+      title: 'sportsclub',
+      text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus asperiores omnis soluta aliquam ad deleniti velit saepe qui, consectetur, fugit expedita magni eum quos labore vero officia officiis delectus magnam?',
       options: {
         //* follow along with this link https://ssense.github.io/vue-carousel/api/
         perPageCustom: [

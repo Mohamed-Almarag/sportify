@@ -1,43 +1,66 @@
 <template>
   <nav>
-    <v-app-bar elevate-on-scroll dense>
+    <v-app-bar dark dense flat class="px-sm-16 transparent">
       <v-app-bar-nav-icon
         v-if="isSmall"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
 
-      <v-toolbar-title>
+      <v-card flat width="20%" class="transparent">
+        <v-toolbar-title>
+          <nuxt-link
+            exact
+            to="/"
+            class="white--text text-decoration-none logo-link font-weight-bold"
+          >
+            <v-img
+              :src="require('@/assets/images/Logo.svg')"
+              max-width="50%"
+              max-height="100%"
+            ></v-img>
+          </nuxt-link>
+        </v-toolbar-title>
+      </v-card>
+
+      <v-card
+        width="60%"
+        flat
+        class="links d-flex justify-center transparent"
+        style="gap: 25px"
+        v-if="!isSmall"
+      >
         <nuxt-link
-          to="/"
-          class="color--text text-decoration-none logo-link font-weight-bold"
-        >
-          Sportify
-        </nuxt-link>
-      </v-toolbar-title>
-      <div class="links" v-if="!isSmall">
-        <v-btn
           v-for="(link, $index) in links"
           :key="$index"
           :to="`/${link.name}`"
-          plain
-          class="color--text"
-          :ripple="false"
+          class="white--text text-uppercase text-decoration-none"
         >
           {{ link.name }}
-        </v-btn>
-      </div>
-
-      <v-spacer></v-spacer>
+        </nuxt-link>
+      </v-card>
 
       <!-- the left side -->
-      <div>
-        <v-btn to="/auth/login" plain color="color" v-if="!$loggedIn()">
+      <v-card
+        flat
+        width="20%"
+        class="d-flex justify-end align-center transparent"
+        style="gap: 10px"
+      >
+        <nuxt-link
+          v-if="!$loggedIn()"
+          to="/auth/login"
+          class="white--text text-decoration-none text-uppercase"
+        >
           {{ $t('auth.login') }}
-        </v-btn>
-        <v-btn to="/auth/register" plain color="color" v-if="!$loggedIn()">
+        </nuxt-link>
+        <nuxt-link
+          v-if="!$loggedIn()"
+          to="/auth/register"
+          class="white--text text-decoration-none text-uppercase"
+        >
           {{ $t('auth.register') }}
-        </v-btn>
-        <v-btn plain color="color" v-else>welcome their!</v-btn>
+        </nuxt-link>
+        <v-btn plain color="color" dark v-else>welcome their!</v-btn>
         <v-menu
           bottom
           nudge-bottom="4"
@@ -50,7 +73,7 @@
               v-on="on"
               plain
               :ripple="false"
-              color="color"
+              color="white"
               icon
             >
               <v-icon> mdi-translate </v-icon>
@@ -74,8 +97,9 @@
             </v-list-item>
           </v-list>
         </v-menu>
-      </div>
+      </v-card>
     </v-app-bar>
+
     <!-- the drawer -->
     <v-navigation-drawer v-model="drawer" temporary app hide-overlay>
       <v-list nav dense>
@@ -152,7 +176,7 @@ export default {
 
 <style lang="scss" scoped>
 nav {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   z-index: 9;

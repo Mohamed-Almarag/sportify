@@ -1,6 +1,6 @@
 <template>
-  <v-app style="min-height: 100vh; padding-top: 8vh" class="scroller">
-    <SharedAppHeader></SharedAppHeader>
+  <v-app class="scroller">
+    <SharedNav></SharedNav>
     <v-main>
       <Nuxt />
     </v-main>
