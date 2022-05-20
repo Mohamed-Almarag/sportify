@@ -13,7 +13,11 @@
         v-text="text"
         class="white--text container text-center px-sm-16"
       ></v-card-subtitle>
-      <v-card flat class="transparent d-flex justify-center" style="gap: 20px">
+      <v-card
+        flat
+        class="transparent d-flex justify-center flex-wrap"
+        style="gap: 20px"
+      >
         <v-btn v-if="btnText2" color="mainColor" rounded depressed>
           <v-icon v-if="btn1Icon" :left="!$vuetify.rtl" :right="$vuetify.rtl">
             mdi-{{ btn1Icon }}

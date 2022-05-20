@@ -11,14 +11,6 @@ export default {
       type: Object,
       required: true,
     },
-    bottom: {
-      type: Number | String,
-      required: false,
-    },
-  },
-  mounted() {
-    const vueCarousel = document.querySelector('.VueCarousel-pagination')
-    vueCarousel.style.bottom = `${this.bottom}px`
   },
 }
 </script>
@@ -26,6 +18,8 @@ export default {
 <style lang="scss">
 .VueCarousel-pagination {
   position: absolute !important;
+  right: 50vw !important;
+  transform: translateX(-50%) !important;
   bottom: -35px;
 }
 .VueCarousel-dot-container {
@@ -34,6 +28,23 @@ export default {
   }
 }
 .VueCarousel-wrapper {
-  padding: 10px 5px;
+  padding: 25px 5px;
+}
+.VueCarousel-navigation {
+  position: absolute;
+  left: 50%;
+  right: 55%;
+  bottom: 0;
+  transform: translate(-50%, -50%) !important;
+  .VueCarousel-navigation-prev {
+    left: 50% !important;
+    bottom: -10px;
+    transform: translateY(50%) translateX(-100%) rotate(-180deg) !important;
+  }
+  .VueCarousel-navigation-next {
+    right: 50% !important;
+    bottom: -10px;
+    transform: translateY(50%) translateX(-100%) rotate(180deg) !important;
+  }
 }
 </style>

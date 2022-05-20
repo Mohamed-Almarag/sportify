@@ -3,7 +3,8 @@
     <SharedHeader :bgImg="headerBGImage" :text="text">
       <template #subtitle>
         <v-card-title
-          class="display-4 font-weight-bold white--text text-uppercase"
+          :class="{ 'display-2': !$vuetify.breakpoint.smAndDown }"
+          class="font-weight-bold white--text text-uppercase"
           style="margin-bottom: -40px"
         >
           {{ $t(title) }}

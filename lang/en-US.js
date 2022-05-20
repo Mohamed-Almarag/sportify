@@ -8,6 +8,7 @@ export default {
   sportsclub: 'sport club',
   aboutUs: 'about us',
   contactUs: 'contact us',
+  sports: 'sports',
   auth: {
     login: 'login',
     register: 'register',

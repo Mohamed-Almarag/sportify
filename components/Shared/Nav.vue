@@ -1,12 +1,22 @@
 <template>
   <nav>
-    <v-app-bar dark dense flat class="px-sm-16 transparent">
-      <v-app-bar-nav-icon
-        v-if="isSmall"
-        @click.stop="drawer = !drawer"
-      ></v-app-bar-nav-icon>
-
-      <v-card flat width="20%" class="transparent">
+    <v-card
+      tile
+      dark
+      dense
+      flat
+      class="transparent px-sm-16 d-flex justify-between align-center"
+    >
+      <v-card
+        flat
+        :width="isSmall ? 'auto' : '20%'"
+        class="d-flex align-center transparent"
+      >
+        <v-app-bar-nav-icon
+          v-if="isSmall"
+          @click.stop="drawer = !drawer"
+        ></v-app-bar-nav-icon>
+        <v-spacer></v-spacer>
         <v-toolbar-title>
           <nuxt-link
             exact
@@ -15,13 +25,14 @@
           >
             <v-img
               :src="require('@/assets/images/Logo.svg')"
-              max-width="50%"
+              :max-width="isSmall ? '100px' : '50%'"
               max-height="100%"
             ></v-img>
           </nuxt-link>
         </v-toolbar-title>
       </v-card>
 
+      <!-- Links -->
       <v-card
         width="60%"
         flat
@@ -39,10 +50,12 @@
         </nuxt-link>
       </v-card>
 
+      <v-spacer></v-spacer>
+
       <!-- the left side -->
       <v-card
         flat
-        width="20%"
+        :width="isSmall ? 'auto' : '20%'"
         class="d-flex justify-end align-center transparent"
         style="gap: 10px"
       >
@@ -60,7 +73,7 @@
         >
           {{ $t('auth.register') }}
         </nuxt-link>
-        <v-btn plain color="color" dark v-else>welcome their!</v-btn>
+        <v-btn plain dark v-else>welcome their!</v-btn>
         <v-menu
           bottom
           nudge-bottom="4"
@@ -75,6 +88,7 @@
               :ripple="false"
               color="white"
               icon
+              :small="isSmall"
             >
               <v-icon> mdi-translate </v-icon>
             </v-btn>
@@ -98,7 +112,7 @@
           </v-list>
         </v-menu>
       </v-card>
-    </v-app-bar>
+    </v-card>
 
     <!-- the drawer -->
     <v-navigation-drawer v-model="drawer" temporary app hide-overlay>

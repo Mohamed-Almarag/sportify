@@ -1,46 +1,52 @@
 <template>
-  <v-card class="mx-auto" max-width="244">
+  <v-card
+    class="mx-auto d-flex justify-center align-center flex-column overflow-hidden"
+    max-width="264"
+    elevation="3"
+    rounded="xl"
+  >
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-      height="200px"
+      src="https://cdn.dribbble.com/users/719060/screenshots/16922617/media/085ed68ead067a3e2c4509a5445a8db4.jpg?compress=1&resize=1200x900&vertical=top"
+      height="150px"
+      class="rounded-lg"
     ></v-img>
 
-    <v-card-title class="text-truncate"> Top western road trips </v-card-title>
+    <div v-if="hasBadge" style="width: 30px" class="mt-4 mb-2">
+      <v-img :src="require('@/assets/images/games/Basketball.svg')"></v-img>
+    </div>
 
-    <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+    <v-card-title :class="titleStyle" class="text-truncate rounded-pill">
+      Football
+    </v-card-title>
 
-    <v-card-actions>
-      <v-btn color="orange lighten-2" text> Explore </v-btn>
+    <v-card-text class="text-center">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit cing elit.
+    </v-card-text>
 
-      <v-spacer></v-spacer>
-
-      <v-btn icon @click="show = !show">
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
+    <v-card-actions class="d-flex justify-center" v-if="hasDate">
+      <v-chip color="mainColor lighten-2" small> 12-8-2022 </v-chip>
     </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          I'm a thing. But, like most politicians, he promised more than he
-          could deliver. You won't have time for sleeping, soldier, not with all
-          the bed making you'll be doing. Then we'll go with that data file!
-          Hey, you add a one and two zeros to that or we walk! You're going to
-          do his laundry? I've got to find a way to escape.
-        </v-card-text>
-      </div>
-    </v-expand-transition>
   </v-card>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      show: false,
-    }
+  props: {
+    hasDate: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    hasBadge: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    titleStyle: {
+      type: String,
+      required: false,
+      default: '',
+    },
   },
 }
 </script>

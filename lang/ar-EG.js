@@ -8,6 +8,7 @@ export default {
   sportsclub: 'نادي الرياضة',
   aboutUs: 'معلومات عنا',
   contactUs: 'تواصل معنا',
+  sports: 'رياضات',
   auth: {
     login: 'تسجيل الدخول',
     register: 'انشاء حساب',

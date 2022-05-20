@@ -3,17 +3,19 @@
     <SharedHeader :bgImg="headerBGImage" :text="text">
       <template #subtitle>
         <v-card-title
-          class="display-4 font-weight-bold white--text text-uppercase"
+          :class="{ 'display-2': !$vuetify.breakpoint.smAndDown }"
+          class="font-weight-bold white--text text-uppercase"
           style="margin-bottom: -40px"
         >
           {{ $t(title) }}
         </v-card-title>
       </template>
       <template #title>
-        <v-card-title
-          class="display-4 font-weight-bold white--text text-uppercase"
-        >
-          <v-img :src="require('@/assets/images/Logo.svg')"></v-img>
+        <v-card-title>
+          <v-img
+            :src="require('@/assets/images/Logo.svg')"
+            :width="!$vuetify.breakpoint.smAndDown ? '280' : '180'"
+          ></v-img>
         </v-card-title>
       </template>
     </SharedHeader>
